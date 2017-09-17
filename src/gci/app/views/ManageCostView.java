@@ -62,7 +62,7 @@ public final class ManageCostView extends JFrame implements View{
             }
         });
 
-        jLabel5.setText("Water Rate (in €/ m3 )");
+        jLabel5.setText("Water Rate (in €/ m3)");
 
         defaultValueButton.setText("Default Value");
         defaultValueButton.setDefaultCapable(false);

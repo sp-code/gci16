@@ -34,6 +34,16 @@ import javax.swing.JDialog;
 import javax.swing.JTable;
 
 public class Controller{
+    
+    private final static String USERNAME_NOT_VALID = "Username is not correct.\n"
+                     + "It should be >= 4 and <= 15 character length and alphanumeric.\n";
+    private final static String PASSWORD_NOT_VALID = "Password is not correct.\n"
+                     + "It should be >= 6 and <= 15 character length and alphanumeric.";
+    private final static String FEES_NOT_NUMBER = "The shipping fees is not a number.";
+    private final static String WATER_NOT_NUMBER = "The water rate is not a number.";
+    private final static String VAT_NOT_NUMBER = "The VAT is not a number.";
+    private final static String USER_NOT_EXISTS_DB = "Not exists such username in the db.";
+    
     private Connection connection = null;
     
     private LoginModel loginModel = null;
@@ -163,16 +173,11 @@ public class Controller{
                     errorView = new ErrorView(this, createOpView);
                     if(!validUser)
                         errorModel.setErrorMessage(
-                              UtilityModule.convertToMultiline("Username is not correct.\n"
-                                      + "It should be > 5 character length and alphanumeric."
-                              )
+                              UtilityModule.convertToMultiline(USERNAME_NOT_VALID)
                         );
                     else if(!validPass)
                         errorModel.setErrorMessage(
-                                UtilityModule.convertToMultiline(
-                                        "Password is not correct.\n"
-                                        + "It should be > 6 character length and alphanumeric."
-                                )
+                                UtilityModule.convertToMultiline(PASSWORD_NOT_VALID)
                         );
                     errorView.setVisible(true);
                 }
@@ -192,9 +197,7 @@ public class Controller{
                     errorModel = new ErrorModel(this);
                     errorView = new ErrorView(this, deleteOpView);
                     errorModel.setErrorMessage(
-                              UtilityModule.convertToMultiline("Username is not correct.\n"
-                                      + "It should be > 5 character length and alphanumeric."
-                              )
+                              UtilityModule.convertToMultiline(USERNAME_NOT_VALID)
                     );
                     errorView.setVisible(true);
                 }
@@ -213,7 +216,7 @@ public class Controller{
                 else{ 
                     errorModel = new ErrorModel(this);
                     errorView = new ErrorView(this, deleteOpView); 
-                    errorModel.setErrorMessage("Not exist such username in the db.");
+                    errorModel.setErrorMessage(USER_NOT_EXISTS_DB);
                     errorView.setVisible(true);
                 }
             }
@@ -249,11 +252,11 @@ public class Controller{
                     errorModel = new ErrorModel(this);
                     errorView = new ErrorView(this, manageCostView); 
                     if(!ValidationModule.isStringADouble(shippingFeesToValidate))
-                        errorModel.setErrorMessage("The shipping fees is not a number.");
+                        errorModel.setErrorMessage(FEES_NOT_NUMBER);
                     else if(!ValidationModule.isStringADouble(waterRateToValidate))
-                        errorModel.setErrorMessage("The water rate is not a number.");
+                        errorModel.setErrorMessage(WATER_NOT_NUMBER);
                     else
-                        errorModel.setErrorMessage("The vat is not a number.");
+                        errorModel.setErrorMessage(VAT_NOT_NUMBER);
                     errorView.setVisible(true);
                 }
                 
@@ -308,7 +311,7 @@ public class Controller{
             else{
                 errorModel = new ErrorModel(this);
                 errorView = new ErrorView(this, loginView);
-                errorModel.setErrorMessage("Not exists such username and password in the db.");
+                errorModel.setErrorMessage(USER_NOT_EXISTS_DB);
                 errorView.setVisible(true);
             }
         }
@@ -317,16 +320,11 @@ public class Controller{
             errorView = new ErrorView(this, loginView);
             if(!validUser)
                 errorModel.setErrorMessage(
-                              UtilityModule.convertToMultiline("Username is not correct.\n"
-                                      + "It should be > 5 character length and alphanumeric."
-                              )
+                              UtilityModule.convertToMultiline(USERNAME_NOT_VALID)
                 );
             else if(!validPass)
                 errorModel.setErrorMessage(
-                                UtilityModule.convertToMultiline(
-                                        "Password is not correct.\n"
-                                        + "It should be > 6 character length and alphanumeric."
-                                )
+                                UtilityModule.convertToMultiline(PASSWORD_NOT_VALID)
                 );
             errorView.setVisible(true);
         }

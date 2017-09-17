@@ -30,7 +30,7 @@ public class ValidationModule {
     }
     
     protected static boolean validateUsername(String username){
-        if(username == null || username.length() < 5) return false;
+        if(username == null || username.length() < 4 || username.length() > 15) return false;
         String control = "^[a-zA-Z][a-zA-Z0-9]*$";
         Pattern p = Pattern.compile(control);
         Matcher m = p.matcher(username);
@@ -38,7 +38,7 @@ public class ValidationModule {
     }
     
     protected static boolean validatePassword(String password){
-        if(password == null || password.length() < 6) return false;
+        if(password == null || password.length() < 6 || password.length() > 15) return false;
         String control = "^[a-zA-Z][a-zA-Z0-9]*$"; 
         Pattern p = Pattern.compile(control);
         Matcher m = p.matcher(password);
