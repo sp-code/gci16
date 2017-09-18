@@ -44,7 +44,7 @@ public final class LoginOKView extends JFrame implements View{
             }
         });
 
-        bContinue.setText("Go to Menù");
+        bContinue.setText("Go to Menu");
         bContinue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bContinueActionPerformed(evt);
