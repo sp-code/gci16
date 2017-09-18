@@ -7,6 +7,8 @@ import gci.app.model.LoginModel;
 import gci.app.model.OperatorModel;
 import gci.app.views.AdministratorDesktopView;
 import gci.app.views.BillCreatedView;
+import gci.app.views.ChangePasswordOperatorView;
+import gci.app.views.ChoosePasswordView;
 import gci.app.views.ConfirmDeleteView;
 import gci.app.views.CostChangedView;
 import gci.app.views.CreateOperatorView;
@@ -22,6 +24,7 @@ import gci.app.views.MenuView;
 import gci.app.views.OperatorDesktopView;
 import gci.app.views.OperatorCreatedView;
 import gci.app.views.OperatorDeletedView;
+import gci.app.views.PasswordChangedView;
 import gci.app.views.ProduceBillsView;
 import gci.app.views.View;
 import java.awt.Desktop;
@@ -70,6 +73,9 @@ public class Controller{
     
     private Date expirationDate = null;
     private String fileName;
+    private ChangePasswordOperatorView changePasswordOperatorView;
+    private ChoosePasswordView choosePasswordView;
+    private PasswordChangedView passwordChangedView;
     
     public void controller() throws SQLException{
         connection = DatabaseModule.getDefaultConnection();
@@ -108,6 +114,10 @@ public class Controller{
                 deleteOpView.setVisible(true);
             else if(parentView instanceof ManageCostView)
                 manageCostView.setVisible(true);
+            else if(parentView instanceof ChangePasswordOperatorView)
+                changePasswordOperatorView.setVisible(true);
+            else if(parentView instanceof ChoosePasswordView)
+                choosePasswordView.setVisible(true);
         }
         else if(v instanceof BillCreatedView){
             if (Desktop.isDesktopSupported()) {
@@ -140,6 +150,11 @@ public class Controller{
                 QueryModule.setCostModel(costModel);
                 QueryModule.queryRetrieveCostInfo();
                 manageCostView.setVisible(true);
+            }
+            else if(eventName.equals("Manage Password Operator")){
+                changePasswordOperatorView = new ChangePasswordOperatorView(this);
+                operatorModel = new OperatorModel(this);
+                changePasswordOperatorView.setVisible(true);
             }
         }
         else if(v instanceof OperatorDesktopView){
@@ -183,6 +198,38 @@ public class Controller{
                 }
             }
         }
+        else if(v instanceof ChangePasswordOperatorView){
+            if(eventName.equals("Search")){
+                final String username = changePasswordOperatorView.getUsernameTextField().getText();
+                operatorModel.setUsernameToSearch(username);
+                final boolean validUser = ValidationModule.validateUsername(username);
+                if(validUser){
+                    final boolean existsUser = QueryModule.queryUsernameExists(username);
+                    if(existsUser){
+                        choosePasswordView = new ChoosePasswordView(this);
+                        choosePasswordView.setVisible(true);
+                    }
+                    else{
+                        errorModel = new ErrorModel(this);
+                        errorView = new ErrorView(this, changePasswordOperatorView);
+                        errorModel.setErrorMessage(
+                              UtilityModule.convertToMultiline(USER_NOT_EXISTS_DB)
+                        );
+                        errorView.setVisible(true);
+                    }
+                }
+                else{
+                    errorModel = new ErrorModel(this);
+                    errorView = new ErrorView(this, changePasswordOperatorView);
+                    errorModel.setErrorMessage(
+                              UtilityModule.convertToMultiline(USERNAME_NOT_VALID)
+                    );
+                    errorView.setVisible(true);
+                }
+            }
+            else if(eventName.equals("Back"))
+                adminView.setVisible(true);
+        }
         else if(v instanceof DeleteOperatorView){
             if(eventName.equals("Search")){
                 final String username = deleteOpView.getUsernameTextField().getText();
@@ -203,6 +250,27 @@ public class Controller{
                 }
             }
             
+        }
+        else if(v instanceof ChoosePasswordView){
+            if(eventName.equals("Change")){
+                final String password = new String(choosePasswordView.getPasswordField().getPassword());
+                final boolean validPass = ValidationModule.validatePassword(password);
+                if(validPass){
+                    final boolean flag = QueryModule.queryUpdatePassword(operatorModel.getUsernameToSearch(), password);
+                    if(flag){
+                        passwordChangedView = new PasswordChangedView(this);
+                        passwordChangedView.setVisible(true);
+                    }
+                }
+                else{
+                    errorModel = new ErrorModel(this);
+                    errorView = new ErrorView(this, choosePasswordView);
+                    errorModel.setErrorMessage(
+                              UtilityModule.convertToMultiline(PASSWORD_NOT_VALID)
+                    );
+                    errorView.setVisible(true);
+                }
+            }
         }
         else if(v instanceof ConfirmDeleteView){
             if(eventName.equals("Back"))
@@ -292,7 +360,10 @@ public class Controller{
                 billsCreatedView.setVisible(true);
             }
         }
-        else if(v instanceof OperatorCreatedView || v instanceof OperatorDeletedView || v instanceof CostChangedView)
+        else if(v instanceof OperatorCreatedView 
+           || v instanceof OperatorDeletedView 
+           || v instanceof PasswordChangedView
+           || v instanceof CostChangedView)
             adminView.setVisible(true);
         else if(v instanceof BillCreatedView)
             operatorView.setVisible(true);

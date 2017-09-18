@@ -207,4 +207,40 @@ public class QueryModule {
         }
         return false;
     }
+
+    protected static boolean queryUsernameExists(String username) {
+        ResultSet rs;
+        Statement s;
+        String query =  "SELECT * from "+DatabaseModule.DB+
+                        ".LOGIN WHERE USERNAME = '"+username+"';";
+        try{
+            s = connection.createStatement();
+            rs = s.executeQuery(query);
+            if(rs.next())
+                return true;
+        }
+        catch (SQLException e) {
+            DatabaseModule.showSQLError(e);
+        }
+        return false;
+    }
+
+    protected static boolean queryUpdatePassword(String usernameToSearch, String newPassword) {
+        final int result;
+        Statement s;
+        
+        String query =  "UPDATE "+DatabaseModule.DB+
+                        ".LOGIN SET PASSWD = '"+newPassword+
+                        "' WHERE USERNAME = '"+usernameToSearch+"';";
+        try{
+            s = connection.createStatement();
+            result = s.executeUpdate(query);
+            if(result != 0)
+                return true;
+        }
+        catch (SQLException e) {
+            DatabaseModule.showSQLError(e);
+        }
+        return false;
+    }
 }
