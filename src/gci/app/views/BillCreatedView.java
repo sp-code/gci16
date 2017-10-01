@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public final class BillCreatedView extends JFrame implements View{
+public final class BillCreatedView extends JFrame implements SuccessView{
     private final Controller controller;
 
     public BillCreatedView(Controller controller) {

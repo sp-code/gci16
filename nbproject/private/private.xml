@@ -10,14 +10,17 @@
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/BillCreatedView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/CustomerModel.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/PasswordChangedView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ErrorView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/Model.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/LoginModel.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/View.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/DataSummaryView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/OperatorDeletedView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/ValidationModule.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ChangePasswordOperatorView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/OperatorModel.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/DatabaseModule.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/OperatorDesktopView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/OperatorCreatedView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/PDFModule.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ProduceBillsView.java</file>
@@ -25,6 +28,7 @@
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/LoginOKView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/CreateOperatorView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/Main.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/SuccessView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/LoginView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/Controller.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/CostModel.java</file>

@@ -4,7 +4,7 @@ import gci.app.controller.Controller;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 
-public final class OperatorDeletedView extends JFrame implements View{
+public final class OperatorDeletedView extends JFrame implements SuccessView{
     private final Controller controller;
 
     public OperatorDeletedView(Controller controller) {
