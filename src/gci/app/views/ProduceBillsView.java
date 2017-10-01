@@ -61,7 +61,7 @@ public final class ProduceBillsView extends JFrame implements View{
 
             },
             new String [] {
-                "Tax Code", "Expiration"
+                "Tax Code", "Read Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {

@@ -139,6 +139,28 @@ public class QueryModule {
         }
     }
     
+    protected static void queryRetrieveIDAndConsumption(String taxCode) {
+        ResultSet rs;
+        Statement s;
+        String query =  "SELECT C.WATER_METER_ID, C.CONSUMPTION FROM "+DatabaseModule.DB+
+                        ".CUSTOMERS C "
+                        + "WHERE C.TAXCODE ='"+taxCode +"';";
+        try{
+            s = connection.createStatement();
+            rs = s.executeQuery(query);
+            while(rs.next()){
+                Integer waterMeterID = new Integer(rs.getString("C.WATER_METER_ID"));
+                Double consumption = new Double(rs.getString("C.CONSUMPTION"));
+                customerModel.setConsumption(consumption);
+                customerModel.setWaterMeterID(waterMeterID);
+                
+            }
+        }
+        catch (SQLException e) {
+            DatabaseModule.showSQLError(e);
+        }
+    }
+    
     protected static void queryRetrieveBillsInfo(){
         ResultSet rs;
         Statement s;
@@ -147,14 +169,17 @@ public class QueryModule {
         
         Object[] row = new Object[2];
         
-        String query =  "SELECT * from "+DatabaseModule.DB+
-                        ".BILLS ORDER BY EXPIRATION ASC LIMIT 5;";
+        String query =  "SELECT C.TAXCODE, TO_DATE FROM "+DatabaseModule.DB+
+                        ".CUSTOMERS C INNER JOIN "
+                        +DatabaseModule.DB+
+                        ".BILLS B "
+                        + "ORDER BY TO_DATE ASC LIMIT 5;";
         try{
             s = connection.createStatement();
             rs = s.executeQuery(query);
             while(rs.next()){
-                row[0] = rs.getString("TAXCODE");
-                row[1] = rs.getDate("EXPIRATION");
+                row[0] = rs.getString("C.TAXCODE");
+                row[1] = rs.getDate("B.TO_DATE");
                 dtm.addRow(row);
             }
         }
@@ -167,8 +192,8 @@ public class QueryModule {
         ResultSet rs;
         Statement s;
         final String queryArguments = "C.NAME, C.SURNAME, C.TAXCODE, "
-                                        + "C.DATEOFBIRTH, C.HOMEADDRESS,"
-                                        + " C.HOMENUMBER, C.EMAIL";
+                                        + "C.ADDRESS,"
+                                        + " C.PHONE";
         final String query =  "SELECT "+queryArguments+" FROM "+DatabaseModule.DB+
                         ".CUSTOMERS AS C WHERE C.TAXCODE = '"+customerTaxCode+"';";
         try{
@@ -178,10 +203,8 @@ public class QueryModule {
                 customerModel.setName(rs.getString("NAME"));
                 customerModel.setSurname(rs.getString("SURNAME"));
                 customerModel.setTaxCode(rs.getString("TAXCODE"));
-                customerModel.setDateOfBirth(rs.getDate("DATEOFBIRTH"));
-                customerModel.setHomeAddress(rs.getString("HOMEADDRESS"));
-                customerModel.setPhone(rs.getString("HOMENUMBER"));
-                customerModel.setEmail(rs.getString("EMAIL"));
+                customerModel.setHomeAddress(rs.getString("ADDRESS"));
+                customerModel.setPhone(rs.getString("PHONE"));
             }
         }
         catch (SQLException e) {
@@ -189,17 +212,18 @@ public class QueryModule {
         }
     }
     
-    protected static boolean queryDeleteGeneratedBill(String taxCode) {
-        final int result;
+    
+    protected static boolean createGeneratedBill(Integer waterMeterID) {
+        final boolean result;
         Statement s;
-        String query =  "DELETE FROM "+DatabaseModule.DB+
-                        ".BILLS WHERE TAXCODE='"+
-                        taxCode+"';";
-        System.out.println(query);
+        String query =  "INSERT INTO "+DatabaseModule.DB+
+                        ".GENERATED_BILLS(WATER_METER_ID) VALUES("+
+                        waterMeterID+");";
+        //System.out.println(query);
         try{
             s = connection.createStatement();
-            result = s.executeUpdate(query);
-            if(result != 0)
+            result = s.execute(query);
+            if(result)
                 return true;
         }
         catch (SQLException e) {
@@ -207,7 +231,7 @@ public class QueryModule {
         }
         return false;
     }
-
+    
     protected static boolean queryUsernameExists(String username) {
         ResultSet rs;
         Statement s;
@@ -243,4 +267,6 @@ public class QueryModule {
         }
         return false;
     }
+
+    
 }

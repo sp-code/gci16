@@ -72,7 +72,6 @@ public class Controller{
     private BillCreatedView billsCreatedView = null;
     
     private Date expirationDate = null;
-    private String fileName;
     private ChangePasswordOperatorView changePasswordOperatorView;
     private ChoosePasswordView choosePasswordView;
     private PasswordChangedView passwordChangedView;
@@ -122,8 +121,8 @@ public class Controller{
         else if(v instanceof BillCreatedView){
             if (Desktop.isDesktopSupported()) {
                 try{
-                    if(ValidationModule.isValidString(fileName)){
-                        File myFile = new File(fileName);
+                    if(ValidationModule.isValidString(PDFModule.getFilename())){
+                        File myFile = new File(PDFModule.getFilename());
                         Desktop.getDesktop().open(myFile);
                     }
                 }catch(IOException ex){}
@@ -347,14 +346,19 @@ public class Controller{
             if(eventName.equals("Back"))
                 produceBillsView.setVisible(true);
             else{ //GENERATE Event.
-                QueryModule.queryDeleteGeneratedBill(customerModel.getTaxCode());
-                billsCreatedView = new BillCreatedView(this);
+                manageCostView = new ManageCostView(this);
+                costModel = new CostModel(this);
+                QueryModule.setCostModel(costModel);
+                QueryModule.queryRetrieveCostInfo();
+                QueryModule.queryRetrieveIDAndConsumption(customerModel.getTaxCode());
+                PDFModule.setCostModel(costModel);
                 PDFModule.setCustomerModel(customerModel);
-                PDFModule.setFilename(fileName);
+                QueryModule.createGeneratedBill(customerModel.getWaterMeterID());
+                billsCreatedView = new BillCreatedView(this);
                 PDFModule.createPDF(expirationDate);
                 billsCreatedView.getLinkBillClickableLabel().setText(
                         "<html>"+
-                            "<u style=\"color: blue\">"+fileName+"</u>"+
+                            "<u style=\"color: blue\">"+PDFModule.getFilename()+"</u>"+
                         "</html>"
                 );
                 billsCreatedView.setVisible(true);
@@ -470,16 +474,8 @@ public class Controller{
         dataSummaryView.getTaxCodeLabel().setText(taxCode);
     }
     
-    public void setDateOfBirth(Date dateOfBirth) {
-        dataSummaryView.getBirthDateLabel().setText(dateOfBirth.toString());
-    }
-
     public void setHomeAddress(String homeAddress) {
         dataSummaryView.getHomeAddressLabel().setText(homeAddress);
-    }
-
-    public void setEmail(String email) {
-        dataSummaryView.getEmailLabel().setText(email);
     }
     
     public void setPhone(String phone) {

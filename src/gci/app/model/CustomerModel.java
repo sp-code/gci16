@@ -11,17 +11,14 @@ public final class CustomerModel implements Model{
     private String name;
     private String surname;
     private String taxCode;
-    private Date dateOfBirth;
     private String homeAddress;
     private String phone;
-    private String email;
-    private String waterMeterID;
+    private Integer waterMeterID;
     private Date customerSince;
     private Date lastRead;
     private Date lastGenerated;
     private String status;
-    
-        
+    private double consumption;
     
     public CustomerModel(Controller controller) throws SQLException{
         this.controller = controller;
@@ -54,15 +51,6 @@ public final class CustomerModel implements Model{
         controller.setTaxCode(taxCode);
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-        controller.setDateOfBirth(dateOfBirth);
-    }
-
     public String getHomeAddress() {
         return homeAddress;
     }
@@ -81,21 +69,11 @@ public final class CustomerModel implements Model{
         controller.setPhone(phone);
     }
 
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-        controller.setEmail(email);
-    }
-
-    public String getWaterMeterID() {
+    public Integer getWaterMeterID() {
         return waterMeterID;
     }
 
-    public void setWaterMeterID(String waterMeterID) {
+    public void setWaterMeterID(Integer waterMeterID) {
         this.waterMeterID = waterMeterID;
     }
 
@@ -129,5 +107,13 @@ public final class CustomerModel implements Model{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+    public double getConsumption() {
+        return consumption;
+    }
+
+    public void setConsumption(double consumption) {
+        this.consumption = consumption;
     }
 }

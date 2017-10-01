@@ -4,19 +4,33 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/AdministratorDesktopView.java</file>
-            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ManageCostView.java</file>
-            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/LoginOKView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/MenuView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/UtilityModule.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/CostChangedView.java</file>
-            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/CreateOperatorView.java</file>
-            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/LoginView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/BillCreatedView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/CustomerModel.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/PasswordChangedView.java</file>
-            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/Controller.java</file>
-            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ConfirmDeleteView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/Model.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/LoginModel.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/DataSummaryView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/OperatorDeletedView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/ValidationModule.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ChangePasswordOperatorView.java</file>
-            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ChoosePasswordView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/OperatorModel.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/DatabaseModule.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/OperatorCreatedView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/PDFModule.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ProduceBillsView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ManageCostView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/LoginOKView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/CreateOperatorView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/Main.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/LoginView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/Controller.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/CostModel.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ConfirmDeleteView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/ChoosePasswordView.java</file>
+            <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/model/ErrorModel.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/views/DeleteOperatorView.java</file>
             <file>file:/C:/Users/Stefano/Desktop/GciApp1617/src/gci/app/controller/QueryModule.java</file>
         </group>

@@ -1,5 +1,6 @@
 package gci.app.controller;
 
+import gci.app.model.CostModel;
 import gci.app.model.CustomerModel;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -13,14 +14,23 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 public class PDFModule {
     private static CustomerModel customerModel;
+    private static CostModel costModel;
     private static String fileName;
     
     protected static void setCustomerModel(CustomerModel cm) {
         customerModel = cm;
     }
     
+    public static void setCostModel(CostModel cost) {
+        costModel = cost;
+    }
+    
     protected static void setFilename(String fn){
         fileName = fn;
+    }
+    
+    protected static String getFilename(){
+        return fileName;
     }
     
     protected static void createPDF(Date date){
@@ -29,14 +39,12 @@ public class PDFModule {
         final String name = customerModel.getName();
         final String surname = customerModel.getSurname();
         final String taxCode = customerModel.getTaxCode();
-        final String birthDate = dateFormat.format(customerModel.getDateOfBirth());
         final String homeAddress = customerModel.getHomeAddress();
         final String phone = customerModel.getPhone();
-        final String email = customerModel.getEmail();
         
         dateFormat = new SimpleDateFormat("dd_MM_yyyy");
         
-        Date expDate = DateUtils.addMonths(date, 1);
+        Date expDate = DateUtils.addMonths(date, 3);
         
         
         final String dateOfCreation = dateFormat.format(date);
@@ -56,7 +64,7 @@ public class PDFModule {
 
             content.beginText();
             content.setFont(PDType1Font.HELVETICA, 26);
-            content.moveTextPositionByAmount(250, 750);
+            content.moveTextPositionByAmount(200, 750);
             content.drawString("Bill OF " + name + " " + surname);
             content.endText();
 
@@ -71,19 +79,6 @@ public class PDFModule {
             content.setFont(PDType1Font.HELVETICA, 16);
             content.moveTextPositionByAmount(250, 700);
             content.drawString(taxCode);
-            content.endText();
-
-
-            content.beginText();
-            content.setFont(PDType1Font.HELVETICA, 16);
-            content.moveTextPositionByAmount(80,650);
-            content.drawString("Birth Date : ");
-            content.endText();
-
-            content.beginText();
-            content.setFont(PDType1Font.HELVETICA, 16);
-            content.moveTextPositionByAmount(250,650);
-            content.drawString(birthDate);
             content.endText();
             
             content.beginText();
@@ -109,18 +104,6 @@ public class PDFModule {
             content.moveTextPositionByAmount(250,550);
             content.drawString(phone);
             content.endText();
-
-            content.beginText();
-            content.setFont(PDType1Font.HELVETICA, 16);
-            content.moveTextPositionByAmount(80,500);
-            content.drawString("Email : ");
-            content.endText();
-            
-            content.beginText();
-            content.setFont(PDType1Font.HELVETICA, 16);
-            content.moveTextPositionByAmount(250,500);
-            content.drawString(email);
-            content.endText();
             
             content.beginText();
             content.setFont(PDType1Font.HELVETICA, 20);
@@ -140,18 +123,25 @@ public class PDFModule {
             content.drawString("Total To Pay : ");
             content.endText();
             
+            //Cost Calculation 
+            final double shippingFees = costModel.getShippingFees();
+            final double VAT = costModel.getVAT();
+            final double waterRate = costModel.getWaterRate();
+            final Double result = customerModel.getConsumption()
+                                +(customerModel.getConsumption()* VAT/100)
+                                + shippingFees + waterRate;
+            // End Calculation
+            
             content.beginText();
             content.setFont(PDType1Font.HELVETICA_BOLD, 20);
             content.moveTextPositionByAmount(250,380);
-            content.drawString("10000" + "€");
+            content.drawString(result.toString()+ " €"); // TODO: Custom
             content.endText();
             
             content.close();
             document.save(fileName);
             document.close();
-            
-            //System.out.println("your file created in : "+ System.getProperty("user.dir"));
-
+           
         }
         catch(IOException e){
             System.err.println(e.getLocalizedMessage());

@@ -14,14 +14,6 @@ public final class DataSummaryView extends JFrame implements View{
         this.controller = controller;
     }
 
-    public JLabel getBirthDateLabel() {
-        return birthDateLabel;
-    }
-
-    public JLabel getEmailLabel() {
-        return emailLabel;
-    }
-
     public JLabel getNameLabel() {
         return nameLabel;
     }
@@ -55,14 +47,10 @@ public final class DataSummaryView extends JFrame implements View{
         surnameLabel = new javax.swing.JLabel();
         taxCodeLabel = new javax.swing.JLabel();
         identificativoLabel3 = new javax.swing.JLabel();
-        identificativoLabel4 = new javax.swing.JLabel();
-        birthDateLabel = new javax.swing.JLabel();
         identificativoLabel5 = new javax.swing.JLabel();
         homeAddressLabel = new javax.swing.JLabel();
         identificativoLabel6 = new javax.swing.JLabel();
         phoneLabel = new javax.swing.JLabel();
-        emailLabel = new javax.swing.JLabel();
-        identificativoLabel7 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -106,12 +94,6 @@ public final class DataSummaryView extends JFrame implements View{
         identificativoLabel3.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         identificativoLabel3.setText("Tax Code");
 
-        identificativoLabel4.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        identificativoLabel4.setText("Birth Date");
-
-        birthDateLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        birthDateLabel.setText("#CustomerBirthDate");
-
         identificativoLabel5.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
         identificativoLabel5.setText("Home Address");
 
@@ -124,12 +106,6 @@ public final class DataSummaryView extends JFrame implements View{
         phoneLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         phoneLabel.setText("#CustomerPhone");
 
-        emailLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        emailLabel.setText("#CustomerEmail");
-
-        identificativoLabel7.setFont(new java.awt.Font("Yu Gothic UI", 0, 14)); // NOI18N
-        identificativoLabel7.setText("Email");
-
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,44 +117,39 @@ public final class DataSummaryView extends JFrame implements View{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dataSummaryLabel)
-                        .addGap(55, 55, 55))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(71, 71, 71)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(identificativoLabel5)
-                            .addComponent(identificativoLabel4)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(identificativoLabel3)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(identificativoLabel)
-                                    .addComponent(identificativoLabel2)))
-                            .addComponent(identificativoLabel6)
-                            .addComponent(identificativoLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(homeAddressLabel)
-                            .addComponent(birthDateLabel)
-                            .addComponent(phoneLabel)
-                            .addComponent(emailLabel)
-                            .addComponent(taxCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(surnameLabel)
-                            .addComponent(nameLabel))))
-                .addGap(67, 67, 67))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label)
-                .addContainerGap())
+                .addGap(71, 71, 71)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(identificativoLabel3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(identificativoLabel)
+                            .addComponent(identificativoLabel2)))
+                    .addComponent(identificativoLabel6)
+                    .addComponent(identificativoLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(phoneLabel)
+                    .addComponent(taxCodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(surnameLabel)
+                    .addComponent(nameLabel)
+                    .addComponent(homeAddressLabel))
+                .addGap(67, 67, 67))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(generateButton)
                 .addGap(22, 22, 22))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(dataSummaryLabel)
+                        .addGap(122, 122, 122))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(label)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,25 +175,17 @@ public final class DataSummaryView extends JFrame implements View{
                     .addComponent(taxCodeLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(identificativoLabel4)
-                    .addComponent(birthDateLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(identificativoLabel5)
                     .addComponent(homeAddressLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(identificativoLabel6)
-                    .addComponent(phoneLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(identificativoLabel7)
-                    .addComponent(emailLabel))
-                .addGap(18, 18, 18)
+                    .addComponent(phoneLabel)
+                    .addComponent(identificativoLabel6))
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(generateButton)
                     .addComponent(backButton))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -249,18 +212,14 @@ public final class DataSummaryView extends JFrame implements View{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JLabel birthDateLabel;
     private javax.swing.JLabel dataSummaryLabel;
-    private javax.swing.JLabel emailLabel;
     private javax.swing.JButton generateButton;
     private javax.swing.JLabel homeAddressLabel;
     private javax.swing.JLabel identificativoLabel;
     private javax.swing.JLabel identificativoLabel2;
     private javax.swing.JLabel identificativoLabel3;
-    private javax.swing.JLabel identificativoLabel4;
     private javax.swing.JLabel identificativoLabel5;
     private javax.swing.JLabel identificativoLabel6;
-    private javax.swing.JLabel identificativoLabel7;
     private javax.swing.JLabel label;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel phoneLabel;
