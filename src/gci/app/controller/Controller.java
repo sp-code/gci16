@@ -46,6 +46,8 @@ public class Controller{
     private final static String WATER_NOT_NUMBER = "The water rate is not a number.";
     private final static String VAT_NOT_NUMBER = "The VAT is not a number.";
     private final static String USER_NOT_EXISTS_DB = "Not exists such username in the db.";
+    private final static String USER_EXISTS_DB = "Operator exists already.\n"
+                                                 + "Choose another username.";
     
     private Connection connection = null;
     
@@ -176,11 +178,27 @@ public class Controller{
                 final String password = new String(createOpView.getPasswordField().getPassword());
                 final boolean validUser = ValidationModule.validateUsername(username);
                 final boolean validPass = ValidationModule.validatePassword(password);
+                boolean userCreated = false;
                 if(validUser && validPass){
-                    createOpView.dispose();
-                    QueryModule.queryCreationOperator(username,password);
-                    operatorCreatedView = new OperatorCreatedView(this);
-                    operatorCreatedView.setVisible(true);
+                    createOpView.setVisible(false);
+                    try{
+                        userCreated = QueryModule.queryCreationOperator(username,password);
+                    }
+                    catch(SQLException ex){
+                        if(ex.getSQLState().equals("23000")){
+                            errorView = new ErrorView(this, createOpView);
+                            errorModel = new ErrorModel(this);
+                            errorModel.setErrorMessage(
+                                UtilityModule.convertToMultiline(USER_EXISTS_DB)
+                            );
+                            errorView.setVisible(true);
+                        }
+                            
+                    }
+                    if(userCreated){
+                        operatorCreatedView = new OperatorCreatedView(this);
+                        operatorCreatedView.setVisible(true);
+                    }
                 }
                 else{
                     errorModel = new ErrorModel(this);

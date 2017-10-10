@@ -17,7 +17,6 @@ public class QueryModule {
     private static CostModel costModel;
     private static ProduceBillsView produceBillsView;
     private static CustomerModel customerModel;
-
     
     protected static void setConnection(Connection conn){
         connection = conn;
@@ -62,7 +61,7 @@ public class QueryModule {
         return false;
     }
     
-    protected static boolean queryCreationOperator(String username, String password){
+    protected static boolean queryCreationOperator(String username, String password) throws SQLException{
         ResultSet rs;
         Statement s;
         final String userType = "O";
@@ -73,9 +72,10 @@ public class QueryModule {
             s.execute(query);
         }
         catch(SQLException e){
-            DatabaseModule.showSQLError(e);
+            if(e.getSQLState().equals("23000"))
+                throw new SQLException("Duplicated ID","23000");
         }
-        return false;
+        return true;
         
     }
     
